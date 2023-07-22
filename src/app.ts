@@ -1,14 +1,12 @@
-class Invoice {
-    constructor(
-        readonly client: string,
-        private details: string,
-        public amount: number,
-    ){}
+import { Invoice } from './classes/Invoice.js';
+import { Payment } from './classes/Payment.js';
+import { HasFormatter } from './interfaces/HasFormatter.js';
 
-    format() {
-        return `${this.client} owes £${this.amount} for ${this.details}`;
-    }
-}
+let docOne: HasFormatter;
+let docTwo: HasFormatter;
+
+docOne = new Invoice('yoshi', 'web work', 250);
+docTwo = new Payment('mario', 'plumbing work', 200);
 
 const invOne = new Invoice('mario', 'work on the mario website', 250);
 const invTwo = new Invoice('luigi', 'work on the luigi website', 300);
