@@ -18,21 +18,30 @@ const list = new ListTemplate(ul);
 form.addEventListener('submit', (e: Event) => {
     e.preventDefault();
 
+    let values: [string, string, number]
+    values = [tofrom.value, details.value, amount.valueAsNumber]
+
     let doc: HasFormatter;
     if (type.value === 'invoice'){
-        doc = new Invoice(tofrom.value, details.value, amount.valueAsNumber)
+        doc = new Invoice(...values)
     } else {
-        doc = new Payment(tofrom.value, details.value, amount.valueAsNumber)
+        doc = new Payment(...values)
     }
     
     list.render(doc, type.value, 'end');
 });
 
-const addUID = <T extends {name: string}>(obj: T) => {
-    let uid = Math.floor(Math.random() * 100);
-    return {...obj, uid};
-}
+// const addUID = <T extends {name: string}>(obj: T) => {
+//     let uid = Math.floor(Math.random() * 100);
+//     return {...obj, uid};
+// }
 
-let docOne = addUID({name: 'yoshi', age: 40});
+// let docOne = addUID({name: 'yoshi', age: 40});
 
-console.log(docOne.age);
+// console.log(docOne.age);
+
+// interface Resource<T> {
+//     uid: number;
+//     resourceName: string;
+//     data: T;
+// }
